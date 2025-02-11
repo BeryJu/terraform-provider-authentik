@@ -173,6 +173,7 @@ func Provider(version string, testing bool) *schema.Provider {
 			"authentik_flow":                             td(dataSourceFlow),
 			"authentik_group":                            td(dataSourceGroup),
 			"authentik_groups":                           td(dataSourceGroups),
+			"authentik_policy":                           td(dataSourcePolicy),
 			"authentik_property_mapping_provider_rac":    td(dataSourcePropertyMappingProviderRAC),
 			"authentik_property_mapping_provider_radius": td(dataSourcePropertyMappingProviderRadius),
 			"authentik_property_mapping_provider_saml":   td(dataSourcePropertyMappingProviderSAML),
