@@ -60,15 +60,23 @@ func resourcePolicyEventMatcherSchemaToProvider(d *schema.ResourceData) *api.Eve
 
 	if a, ok := d.Get("action").(string); ok && a != "" {
 		r.Action.Set(api.EventActions(a).Ptr())
+	} else {
+		r.Action.Set(nil)
 	}
 	if p, ok := d.Get("client_ip").(string); ok && p != "" {
 		r.ClientIp.Set(api.PtrString(p))
+	} else {
+		r.ClientIp.Set(nil)
 	}
 	if a, ok := d.Get("app").(string); ok && a != "" {
 		r.App.Set(api.AppEnum(a).Ptr())
+	} else {
+		r.App.Set(nil)
 	}
 	if m, ok := d.Get("model").(string); ok && m != "" {
 		r.Model.Set(api.ModelEnum(m).Ptr())
+	} else {
+		r.Model.Set(nil)
 	}
 	return &r
 }

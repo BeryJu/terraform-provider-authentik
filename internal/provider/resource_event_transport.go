@@ -59,6 +59,8 @@ func resourceEventTransportSchemaToModel(d *schema.ResourceData) (*api.Notificat
 
 	if w, ok := d.Get("webhook_mapping").(string); ok {
 		m.WebhookMapping.Set(&w)
+	} else {
+		m.WebhookMapping.Set(nil)
 	}
 	return &m, nil
 }

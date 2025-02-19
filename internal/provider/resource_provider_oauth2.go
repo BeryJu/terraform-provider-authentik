@@ -156,6 +156,8 @@ func resourceProviderOAuth2SchemaToProvider(d *schema.ResourceData) *api.OAuth2P
 
 	if s, sok := d.GetOk("authentication_flow"); sok && s.(string) != "" {
 		r.AuthenticationFlow.Set(api.PtrString(s.(string)))
+	} else {
+		r.AuthenticationFlow.Set(nil)
 	}
 	if s, sok := d.GetOk("client_secret"); sok && s.(string) != "" {
 		r.ClientSecret = api.PtrString(s.(string))
@@ -163,9 +165,13 @@ func resourceProviderOAuth2SchemaToProvider(d *schema.ResourceData) *api.OAuth2P
 
 	if s, sok := d.GetOk("signing_key"); sok && s.(string) != "" {
 		r.SigningKey.Set(api.PtrString(s.(string)))
+	} else {
+		r.SigningKey.Set(nil)
 	}
 	if s, sok := d.GetOk("encryption_key"); sok && s.(string) != "" {
 		r.EncryptionKey.Set(api.PtrString(s.(string)))
+	} else {
+		r.EncryptionKey.Set(nil)
 	}
 
 	r.RedirectUris = listToRedirectURIsRequest(d.Get("allowed_redirect_uris").([]interface{}))

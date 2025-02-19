@@ -67,6 +67,8 @@ func resourceStageAuthenticatorDuoSchemaToProvider(d *schema.ResourceData) *api.
 
 	if fn, fnSet := d.GetOk("friendly_name"); fnSet {
 		r.FriendlyName.Set(api.PtrString(fn.(string)))
+	} else {
+		r.FriendlyName.Set(nil)
 	}
 	if h, hSet := d.GetOk("admin_integration_key"); hSet {
 		r.AdminIntegrationKey = api.PtrString(h.(string))
@@ -76,6 +78,8 @@ func resourceStageAuthenticatorDuoSchemaToProvider(d *schema.ResourceData) *api.
 	}
 	if h, hSet := d.GetOk("configure_flow"); hSet {
 		r.ConfigureFlow.Set(api.PtrString(h.(string)))
+	} else {
+		r.ConfigureFlow.Set(nil)
 	}
 	return &r
 }

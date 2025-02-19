@@ -114,9 +114,13 @@ func resourceSourcePlexSchemaToSource(d *schema.ResourceData) *api.PlexSourceReq
 
 	if ak, ok := d.GetOk("authentication_flow"); ok {
 		r.AuthenticationFlow.Set(api.PtrString(ak.(string)))
+	} else {
+		r.AuthenticationFlow.Set(nil)
 	}
 	if ef, ok := d.GetOk("enrollment_flow"); ok {
 		r.EnrollmentFlow.Set(api.PtrString(ef.(string)))
+	} else {
+		r.EnrollmentFlow.Set(nil)
 	}
 
 	r.AllowedServers = castSlice[string](d.Get("allowed_servers").([]interface{}))

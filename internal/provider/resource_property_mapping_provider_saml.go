@@ -48,6 +48,8 @@ func resourcePropertyMappingProviderSAMLSchemaToProvider(d *schema.ResourceData)
 	}
 	if de, dSet := d.GetOk("friendly_name"); dSet {
 		r.FriendlyName.Set(api.PtrString(de.(string)))
+	} else {
+		r.FriendlyName.Set(nil)
 	}
 	return &r
 }
@@ -80,6 +82,8 @@ func resourcePropertyMappingProviderSAMLRead(ctx context.Context, d *schema.Reso
 	setWrapper(d, "saml_name", res.SamlName)
 	if res.FriendlyName.IsSet() {
 		setWrapper(d, "friendly_name", res.FriendlyName.Get())
+	} else {
+		setWrapper(d, "friendly_name", nil)
 	}
 	return diags
 }

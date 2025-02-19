@@ -176,18 +176,28 @@ func resourceProviderSAMLSchemaToProvider(d *schema.ResourceData) *api.SAMLProvi
 
 	if s, sok := d.GetOk("authentication_flow"); sok && s.(string) != "" {
 		r.AuthenticationFlow.Set(api.PtrString(s.(string)))
+	} else {
+		r.AuthenticationFlow.Set(nil)
 	}
 	if s, sok := d.GetOk("name_id_mapping"); sok && s.(string) != "" {
 		r.NameIdMapping.Set(api.PtrString(s.(string)))
+	} else {
+		r.NameIdMapping.Set(nil)
 	}
 	if s, sok := d.GetOk("encryption_kp"); sok && s.(string) != "" {
 		r.EncryptionKp.Set(api.PtrString(s.(string)))
+	} else {
+		r.EncryptionKp.Set(nil)
 	}
 	if s, sok := d.GetOk("signing_kp"); sok && s.(string) != "" {
 		r.SigningKp.Set(api.PtrString(s.(string)))
+	} else {
+		r.SigningKp.Set(nil)
 	}
 	if s, sok := d.GetOk("verification_kp"); sok && s.(string) != "" {
 		r.VerificationKp.Set(api.PtrString(s.(string)))
+	} else {
+		r.VerificationKp.Set(nil)
 	}
 	if s, sok := d.GetOk("default_relay_state"); sok && s.(string) != "" {
 		r.DefaultRelayState = api.PtrString(s.(string))

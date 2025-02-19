@@ -172,22 +172,34 @@ func resourceSourceSAMLSchemaToSource(d *schema.ResourceData) *api.SAMLSourceReq
 
 	if ak, ok := d.GetOk("authentication_flow"); ok {
 		r.AuthenticationFlow.Set(api.PtrString(ak.(string)))
+	} else {
+		r.AuthenticationFlow.Set(nil)
 	}
 	if ef, ok := d.GetOk("enrollment_flow"); ok {
 		r.EnrollmentFlow.Set(api.PtrString(ef.(string)))
+	} else {
+		r.EnrollmentFlow.Set(nil)
 	}
 
 	if s, sok := d.GetOk("slo_url"); sok && s.(string) != "" {
 		r.SloUrl.Set(api.PtrString(s.(string)))
+	} else {
+		r.SloUrl.Set(nil)
 	}
 	if s, sok := d.GetOk("signing_kp"); sok && s.(string) != "" {
 		r.SigningKp.Set(api.PtrString(s.(string)))
+	} else {
+		r.SigningKp.Set(nil)
 	}
 	if s, sok := d.GetOk("encryption_kp"); sok && s.(string) != "" {
 		r.EncryptionKp.Set(api.PtrString(s.(string)))
+	} else {
+		r.EncryptionKp.Set(nil)
 	}
 	if s, sok := d.GetOk("verification_kp"); sok && s.(string) != "" {
 		r.VerificationKp.Set(api.PtrString(s.(string)))
+	} else {
+		r.VerificationKp.Set(nil)
 	}
 
 	return &r

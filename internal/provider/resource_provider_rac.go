@@ -68,6 +68,8 @@ func resourceProviderRACSchemaToProvider(d *schema.ResourceData) (*api.RACProvid
 
 	if s, sok := d.GetOk("authentication_flow"); sok && s.(string) != "" {
 		r.AuthenticationFlow.Set(api.PtrString(s.(string)))
+	} else {
+		r.AuthenticationFlow.Set(nil)
 	}
 
 	attr := make(map[string]interface{})

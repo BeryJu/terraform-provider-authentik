@@ -68,6 +68,8 @@ func resourceGroupSchemaToModel(d *schema.ResourceData) (*api.GroupRequest, diag
 
 	if l, ok := d.Get("parent").(string); ok {
 		m.Parent.Set(&l)
+	} else {
+		m.Parent.Set(nil)
 	}
 
 	users := d.Get("users").([]interface{})

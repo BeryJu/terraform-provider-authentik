@@ -89,15 +89,21 @@ func resourceStageAuthenticatorSmsSchemaToProvider(d *schema.ResourceData) *api.
 
 	if fn, fnSet := d.GetOk("friendly_name"); fnSet {
 		r.FriendlyName.Set(api.PtrString(fn.(string)))
+	} else {
+		r.FriendlyName.Set(nil)
 	}
 	if h, hSet := d.GetOk("auth_password"); hSet {
 		r.AuthPassword = api.PtrString(h.(string))
 	}
 	if h, hSet := d.GetOk("configure_flow"); hSet {
 		r.ConfigureFlow.Set(api.PtrString(h.(string)))
+	} else {
+		r.ConfigureFlow.Set(nil)
 	}
 	if h, hSet := d.GetOk("mapping"); hSet {
 		r.Mapping.Set(api.PtrString(h.(string)))
+	} else {
+		r.Mapping.Set(nil)
 	}
 	if verify, verifySet := d.GetOk("verify_only"); verifySet {
 		r.VerifyOnly = api.PtrBool(verify.(bool))
