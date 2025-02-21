@@ -21,6 +21,10 @@ resource "authentik_provider_oauth2" "name" {
     {
       matching_mode = "strict",
       url           = "http://localhost",
+    },
+    {
+      matching_mode = "regex",
+      url           = "http://localhost/.*",
     }
   ]
 }
@@ -47,6 +51,10 @@ resource "authentik_application" "name" {
 - `access_code_validity` (String) Defaults to `minutes=1`.
 - `access_token_validity` (String) Defaults to `minutes=10`.
 - `allowed_redirect_uris` (List of Map of String)
+  - `matching_mode` (String) Allowed values:
+    - `strict`
+    - `regex`
+  - `url` (String)
 - `authentication_flow` (String)
 - `client_secret` (String, Sensitive) Generated.
 - `client_type` (String) Allowed values:
