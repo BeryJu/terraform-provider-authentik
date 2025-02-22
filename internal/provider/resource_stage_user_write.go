@@ -74,6 +74,8 @@ func resourceStageUserWriteSchemaToProvider(d *schema.ResourceData) *api.UserWri
 
 	if h, hSet := d.GetOk("create_users_group"); hSet {
 		r.CreateUsersGroup.Set(api.PtrString(h.(string)))
+	} else {
+		r.CreateUsersGroup.Set(nil)
 	}
 	return &r
 }

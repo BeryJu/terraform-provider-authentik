@@ -173,22 +173,34 @@ func resourceSourceOAuthSchemaToSource(d *schema.ResourceData) (*api.OAuthSource
 
 	if ak, ok := d.GetOk("authentication_flow"); ok {
 		r.AuthenticationFlow.Set(api.PtrString(ak.(string)))
+	} else {
+		r.AuthenticationFlow.Set(nil)
 	}
 	if ef, ok := d.GetOk("enrollment_flow"); ok {
 		r.EnrollmentFlow.Set(api.PtrString(ef.(string)))
+	} else {
+		r.EnrollmentFlow.Set(nil)
 	}
 
 	if s, sok := d.GetOk("request_token_url"); sok && s.(string) != "" {
 		r.RequestTokenUrl.Set(api.PtrString(s.(string)))
+	} else {
+		r.RequestTokenUrl.Set(nil)
 	}
 	if s, sok := d.GetOk("authorization_url"); sok && s.(string) != "" {
 		r.AuthorizationUrl.Set(api.PtrString(s.(string)))
+	} else {
+		r.AuthorizationUrl.Set(nil)
 	}
 	if s, sok := d.GetOk("access_token_url"); sok && s.(string) != "" {
 		r.AccessTokenUrl.Set(api.PtrString(s.(string)))
+	} else {
+		r.AccessTokenUrl.Set(nil)
 	}
 	if s, sok := d.GetOk("profile_url"); sok && s.(string) != "" {
 		r.ProfileUrl.Set(api.PtrString(s.(string)))
+	} else {
+		r.ProfileUrl.Set(nil)
 	}
 	if s, sok := d.GetOk("additional_scopes"); sok && s.(string) != "" {
 		r.AdditionalScopes = api.PtrString(s.(string))

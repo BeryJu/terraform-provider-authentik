@@ -171,6 +171,8 @@ func resourceSourceLDAPSchemaToSource(d *schema.ResourceData) *api.LDAPSourceReq
 
 	if s, sok := d.GetOk("sync_parent_group"); sok && s.(string) != "" {
 		r.SyncParentGroup.Set(api.PtrString(s.(string)))
+	} else {
+		r.SyncParentGroup.Set(nil)
 	}
 
 	r.UserPropertyMappings = castSlice[string](d.Get("property_mappings").([]interface{}))

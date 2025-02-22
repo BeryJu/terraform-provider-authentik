@@ -96,12 +96,18 @@ func resourceStageIdentificationSchemaToProvider(d *schema.ResourceData) *api.Id
 
 	if h, hSet := d.GetOk("enrollment_flow"); hSet {
 		r.EnrollmentFlow.Set(api.PtrString(h.(string)))
+	} else {
+		r.EnrollmentFlow.Set(nil)
 	}
 	if h, hSet := d.GetOk("recovery_flow"); hSet {
 		r.RecoveryFlow.Set(api.PtrString(h.(string)))
+	} else {
+		r.RecoveryFlow.Set(nil)
 	}
 	if h, hSet := d.GetOk("passwordless_flow"); hSet {
 		r.PasswordlessFlow.Set(api.PtrString(h.(string)))
+	} else {
+		r.PasswordlessFlow.Set(nil)
 	}
 
 	userFields := make([]api.UserFieldsEnum, 0)

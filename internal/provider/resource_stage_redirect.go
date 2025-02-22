@@ -59,6 +59,8 @@ func resourceStageRedirectSchemaToProvider(d *schema.ResourceData) *api.Redirect
 	}
 	if target, targetSet := d.GetOk("target_flow"); targetSet {
 		r.TargetFlow.Set(api.PtrString(target.(string)))
+	} else {
+		r.TargetFlow.Set(nil)
 	}
 	return &r
 }

@@ -88,6 +88,8 @@ func resourceProviderLDAPSchemaToProvider(d *schema.ResourceData) *api.LDAPProvi
 
 	if s, sok := d.GetOk("certificate"); sok && s.(string) != "" {
 		r.Certificate.Set(api.PtrString(s.(string)))
+	} else {
+		r.Certificate.Set(nil)
 	}
 	if s, sok := d.GetOk("tls_server_name"); sok && s.(string) != "" {
 		r.TlsServerName = api.PtrString(s.(string))

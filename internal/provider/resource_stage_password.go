@@ -58,6 +58,8 @@ func resourceStagePasswordSchemaToProvider(d *schema.ResourceData) *api.Password
 
 	if s, sok := d.GetOk("configure_flow"); sok && s.(string) != "" {
 		r.ConfigureFlow.Set(api.PtrString(s.(string)))
+	} else {
+		r.ConfigureFlow.Set(nil)
 	}
 
 	if fa, sok := d.GetOk("failed_attempts_before_cancel"); sok {
